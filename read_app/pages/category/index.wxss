@@ -1,0 +1,52 @@
+/* pages/category/index.wxss */
+@import '../../WxParse/wxParse.wxss';
+.page{
+  font-size: 14px;
+}
+
+.page-head{
+  position: fixed;
+  top: 15px;
+  width: 80%;
+  left: 10%;
+}
+
+.book{
+  display: inline-block;
+  margin-left: 18px;
+}
+
+.book_image {
+}
+
+.search{
+  background: white;
+  display: inline-block;
+  height: 23px;
+  width: 100%;
+  padding: 0;
+}
+
+.page-body {
+}
+.book_image {
+  width: 100px;
+  height: 100px;
+  /* position: relative; */
+  float: left;
+}
+
+
+.book_name{
+  display: block;
+}
+
+.book_author {
+  display: block;
+}
+
+.book_detail {
+  display: block;
+  text-overflow: ellipsis;
+  width: 90%;
+}

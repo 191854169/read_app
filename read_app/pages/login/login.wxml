@@ -1,0 +1,20 @@
+<!--pages/login/login.wxml-->
+<view class='page'>
+  <form bindsubmit='formSubmit'>
+    <view class='page_account'>
+      <label class='page_label'>账号</label>
+      <input placeholder='请输入账户' class='page_ipt' placeholder-class='ipt_hld' name="username"></input>
+    </view>
+    <view class='page_password'>
+      <label class='page_label'>密码</label>
+      <input placeholder='请输入密码' type='password' class='page_ipt' placeholder-class='ipt_hld' name="password"></input>
+    </view>
+    <!-- <view class='page_password'>
+      <label class='page_label'>随机码</label>
+      <input placeholder='请输入随机码' type='randomString' class='page_ipt' placeholder-class='ipt_hld' name="randomString"></input>
+    </view> -->
+    <view class='page_btn'>
+      <button formType='submit'>登录</button>
+    </view>
+  </form>
+</view>

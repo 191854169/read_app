@@ -1,0 +1,39 @@
+/* pages/login/login.wxss */
+.page{
+  font-size: 18px;
+  margin-top: 30px;
+}
+
+.page_ipt {
+  display: inline-block;
+  margin-left: 25px;
+  line-height: 31px;
+}
+
+.page_label {
+  margin-left: 15px;
+}
+.page_account {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-top: 15px;
+}
+
+.page_password {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-top: 15px;
+}
+
+.page_btn {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 25px;
+}
+
+.page_btn button {
+  background-color: #09BB07;
+  color: white;
+  }

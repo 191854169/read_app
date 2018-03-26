@@ -1,0 +1,65 @@
+<import src="/components/toast/index.wxml" />
+<!--index.wxml-->
+<view>
+  <view class='title'>
+    <label>新增图书</label>
+  </view>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class='ipt'>
+      <label>ISBN:</label>
+      <input placeholder='请输入ISBN' name="isbn" bindinput='isbnInput' value='{{isbn}}'></input>
+    </view>
+    <view class='ipt'>
+      <label>编号:</label>
+      <input placeholder='请输入编号' name="id" value='{{id}}'></input>
+    </view>
+    <view class='ipt'>
+      <label>书名:</label>
+      <input placeholder='请输入书名' name="bookName" value='{{bookName}}' class='textView'></input>
+    </view>
+    <view class='ipt'>
+      <label>作者:</label>
+      <input placeholder='请输入作者' name="author" value='{{author}}' class='textView'></input>
+    </view>
+    <view class='ipt'>
+      <label>种类:</label>
+      <input placeholder='请输入种类' name="category" value='{{category}}'></input>
+    </view>
+    <view class='ipt'>
+      <label>简介:</label>
+      <input placeholder='请输入简介' name="detail" value='{{detail}}' class='textView' maxlength='-1'></input>
+    </view>
+    <view class='ipt'>
+      <label>状态:</label>
+      <!-- <input placeholder='请输入状态' name="status" value='{{status}}'></input> -->
+      <picker mode="selector" class='selectStatus' range='{{selectStatus}}' name="status" value='{{index}}' bindchange='selectChange'>
+        {{selectStatus[index]}}
+      </picker>
+    </view>
+    <view wx:if="{{borrow_status}}">
+      <view class='ipt'>
+        <label>借书人:</label>
+        <input placeholder='请输入借书人' name="borrower" value='{{borrower}}'></input>
+      </view>
+      <view class='ipt'>
+        <label>借出时间:</label>
+        <picker mode="date" value="{{startTime}}" start="1970-09-01" end="2050-09-01" bindchange="bindStartTimeChange" class='startTime' name="startTime">
+          <!-- <view class="picker"> -->
+           {{startTime}}
+          <!-- </view> -->
+        </picker>
+        <view style='display:inline-block; overflow:visible'> -- </view>
+        <picker mode="date" value="{{endTime}}" start="1970-09-01" end="2050-09-01" bindchange="bindEndTimeChange" class='endTime' name="endTime">
+          <!-- <view class="picker"> -->
+           {{endTime}}
+          <!-- </view> -->
+        </picker>
+      </view>
+    </view>
+    <view class="btn-area">
+      <button formType="submit" style='background-color:#00BFFF'>提交</button>
+      <button formType="reset" style='background-color:rgb(26, 173, 25)'>取消</button>
+  </view>
+  </form>
+</view>
+<template is="toast" data="{{ Toast }}"></template>

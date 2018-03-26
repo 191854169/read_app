@@ -1,0 +1,54 @@
+/* pages/personal/personal.wxss */
+.page{
+
+}
+
+.page_head{
+  line-height: 80px;
+}
+
+.page_head_img{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 20px;
+  margin-left: 30%;
+}
+
+.page_head label{
+  margin-left: 45%;
+}
+
+.scan{
+  line-height: 50px;
+}
+
+.add_book {
+  line-height: 50px;
+  margin-top: 40px;
+}
+
+.borrow-num{
+  line-height: 50px;
+}
+
+.add_book text, .scan text, .borrow-num text, .is_borrow-num text {
+  margin-left: 50px;
+  margin-top: 25px;
+}
+
+.borrow-num label, .is_borrow-num label{
+  width:18px;
+  height:18px;
+  margin-left: 165px;
+}
+
+.is_borrow-num{
+  line-height: 50px;
+}
+
+.scan image, .add_book image{
+  width:18px;
+  height:18px;
+  margin-left: 165px;
+}

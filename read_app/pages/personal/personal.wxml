@@ -1,0 +1,29 @@
+<!--pages/personal/personal.wxml-->
+<import src='/components/toast/index.wxml'/>
+<view class='page'>
+  <view class='page_head'>
+    <navigator url='/pages/login/login'>
+      <image src='/resource/image/picture.png' class='page_head_img'></image>
+    </navigator>
+      <label>{{name}}</label>
+  </view>
+  <view class='page_body'>
+    <view class='add_book'>
+      <text bindtap='addBook'>添加书籍</text>
+      <image src='/resource/qrcode.png' bindtap='scanBook'></image>
+    </view>
+    <view bindtap='borrowNum' class='borrow-num' data-id='1'>
+      <text>可借书籍</text>
+      <label>2</label>
+    </view>
+    <view bindtap='borrowNum' class='is_borrow-num' data-id='1'>
+      <text>已借书籍</text>
+      <label>1</label>
+    </view>
+    <view class='scan' bindtap='borrowBook'>
+      <text>扫码借书</text>      
+      <image src='/resource/qrcode.png'></image>
+    </view>
+  </view>
+</view>
+<template is="toast" data="{{Toast}}"></template>

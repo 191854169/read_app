@@ -1,0 +1,5 @@
+<!--toast.wxml-->
+<template name="toast">
+  <view class='toast' wx:if="{{Toast.show}}" bindtap='clearToast'>{{Toast.title}}</view>
+  <view class='toast-mask' wx:if="{{Toast.show}}"></view>
+</template>

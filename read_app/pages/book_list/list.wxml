@@ -1,0 +1,41 @@
+<!--pages/book_list/list.wxml-->
+<view class='page' style='height:{{styleHeight}}'>
+  <view class='page-head'>
+    <view class='page-head-scanner' bindtouchend='onFocus'>
+      <image src='/resource/scanner.png'></image> 
+      <view class='search'>
+        <label>请输入书名/作者</label>
+      </view>
+      <icon type='search' size='18' color="#666666"></icon>
+    </view>
+  </view>
+
+  <view class='page-body'>
+    <view wx:if="{{listData.length <= 0}}"></view>
+    <view wx:else>
+      <view wx:for="{{listData}}" wx:key="item.serialNumber"  
+      class="{{is_checked?'normal':'checked'}}" bindtouchstart='touchStart' bindtouchend='touchEnd'  style='margin-top: 10px;'>
+        <view class='book_image'>
+          <image src='{{item.bookInfo.image}}' class='image'></image>
+        </view>
+
+        <view class='book' data-isbn='{{item.bookInfo.title}}' bindtap='enterItem'>
+          <label class='book_name textView'>{{item.bookInfo.title}}</label>
+          <label class='book_author'>{{item.author[0]}}</label>
+          <!-- <input class='book_detail' value='{{item.id}}'></input> -->
+          <view class='book_detail'>
+          编号：<label>{{item.serialNumber}}</label>
+          </view>
+        </view>
+      </view>
+    </view>
+      <!-- <view class="{{is_checked?'normal':'checked'}}" bindtouchstart='touchStart' bindtouchend='touchEnd'>
+          <image src='/resource/zhanweis@2x.png' class='book_image' style='width: 100px; height: 100px;'></image>
+        <view class='book' bindtap='enterItem'>
+          <label class='book_name'>书名</label>
+          <label class='book_author'>作者</label>
+          <text class='textView' disabled='true'>{{detail}}</text>
+        </view>
+      </view> -->
+  </view>
+</view>

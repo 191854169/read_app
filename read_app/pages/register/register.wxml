@@ -1,0 +1,11 @@
+<!--pages/register/register.wxml-->
+<view>
+  <view>
+    <label>账号</label>
+    <input></input>
+  </view>
+  <view>
+    <label>密码</label>
+    <input></input>
+  </view>
+</view>

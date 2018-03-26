@@ -1,0 +1,58 @@
+/**index.wxss**/
+@import '../../components/toast/index.wxss';
+.title {
+  text-align: center;
+}
+
+.ipt {
+  font-size: 16px;
+  height: 10%;
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.ipt input {
+  display: inline-block;
+  overflow: visible;
+  margin-left: 25px;
+  width: 250px;
+}
+
+.selectStatus {
+  display: inline-block;
+  overflow: visible;
+  margin-left: 25px;
+  width: 250px;
+}
+
+.picker {
+  font-size: 14px;
+}
+
+.startTime {
+  /* float:left; 
+  margin-top:10px; */
+  display: inline-block;
+  overflow: visible;
+  margin-left: 25px;
+}
+
+.endTime {
+  /* float: left; 
+  margin-left:10px; 
+  margin-top:10px; */
+  display: inline-block;
+  overflow: visible;
+}
+
+.btn-area {
+  clear: both;
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.btn-area button {
+  width: 40%;
+  display: inline-block;
+}

@@ -1,0 +1,84 @@
+<!--pages/book_list/list.wxml-->
+<view class='page'>
+  <!-- <view class='page-head'>
+    <input class='search' placeholder="搜索"></input>
+  </view> -->
+  <view class='page-body'>
+  <view>
+      <!-- <view wx:for="{{imgData}}"> -->
+        <!-- <view wx:for="{{imgData}}" wx:key="{{item.id}}" class='book' data-id='{{item.id}}' bindtap='enterItem'>
+          <image src='{{item.url}}' class='book_image'></image>
+        </view> -->
+      <!-- </view> -->
+       <view class='book'>
+        <image src='/resource/huiben.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/guanli.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/jishu.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/jiaoyu.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/jingguan.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/kepu.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/lishi.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/lizhi.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/lvxing.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/lvxing.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/qikan.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/qinzi.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/sanwen.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/sheji.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/sheke.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/shenghuo.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/tonghua.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/wenxue.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/xiaoshuo.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/xinli.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/zhexue.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/zhichang.png' class='book_image'></image>
+      </view>
+      <view class='book'>
+        <image src='/resource/qita.png' class='book_image'></image>
+      </view> 
+    </view>
+  </view>
+</view>

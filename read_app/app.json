@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/book_list/list",
+    "pages/addBook/index",
+    "pages/logs/logs",
+    "pages/register/register",
+    "pages/login/login",
+    "pages/personal/personal",
+    "pages/book-detail/detail",
+    "pages/category/index",
+    "pages/category_list/index",
+    "pages/book_empty_list/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor": "#F4A460",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/book_list/list",
+        "text": "books",
+        "iconPath": "resource/image/book.png",
+        "selectedIconPath": "resource/image/book_select.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "pesonal",
+        "iconPath": "resource/image/me.png",
+        "selectedIconPath": "resource/image/me_select.png"
+      }
+    ]
+  }
+}

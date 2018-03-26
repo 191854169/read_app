@@ -1,0 +1,70 @@
+/* pages/category_list/index.wxss */
+@import '../../WxParse/wxParse.wxss';
+.page{
+  font-size: 14px;
+}
+
+.page-head{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 47px;
+}
+
+.page-head-scanner {
+}
+
+.page-head-scanner image {
+  width: 23px;
+  height: 23px;
+  position: relative;
+  left: 15px;
+  top: 6px;
+}
+
+
+.search{
+  display: inline-block;
+  position: absolute;
+  left: 53px;
+  top: 6px;
+  width: 500rpx;
+}
+
+.page-head-scanner icon{
+  position: absolute;
+  right: 15px;
+  top: 8px;
+}
+
+.page-body {
+  margin-top: 47px;
+}
+.book_image {
+  width: 100px;
+  height: 100px;
+  /* position: relative; */
+  float: left;
+}
+
+.book {
+display: flex;
+flex-direction: column;
+justify-content: center;
+height: 100px;
+/* color:#888; */
+}
+
+.book_name{
+  display: block;
+}
+
+.book_author {
+  display: block;
+}
+
+.book_detail {
+  display: block;
+  text-overflow: ellipsis;
+  width: 90%;
+}

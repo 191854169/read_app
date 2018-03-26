@@ -1,0 +1,110 @@
+/* pages/book_empty_list/index.wxss */
+/* pages/book_list/list.wxss */
+@import '../../WxParse/wxParse.wxss';
+.page{
+  font-size: 14px;
+  height: 100%;
+  position: relative;
+}
+
+.page-head{
+   position: absolute;
+  top: 5px; 
+  width: 99%;
+  height: 10%;
+}
+
+.page-head-scanner {
+  width: 90%;
+  position: relative;
+  height: 70%;
+  left: 5%;
+  top: 15%; 
+  padding: 0;
+  margin: 0;
+  /* border-radius: 4px; */
+  box-shadow: 2px 4px 4px 2px #DCDCDC;
+}
+
+.page-head-scanner image {
+  width: 23px;
+  height: 100%;
+  float: left;
+}
+
+
+.search{
+  float: left;
+  /* position: absolute;
+  left: 53px;
+  top: 6px; */
+  height: 100%;
+  width: 500rpx;
+  margin-left: 30px;
+}
+
+.page-head-scanner icon{
+  position: absolute;
+  right: 15px;
+  top: 28%;
+}
+
+.page-body {
+  margin-top: 17%;
+}
+
+.normal {
+  /* border: 1px solid black; */
+  padding: 10px 0;
+}
+
+.normal:hover {
+  padding: 10px 0;
+  background: #DCDCDC;
+}
+
+.checked {
+  padding: 10px 0;
+  background: white;
+}
+
+.book_image {
+  float: left;
+  padding: 0 10px;
+}
+
+
+.book_image .image {
+  width: 70px;
+   height: 100px; 
+}
+
+.book {
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+height: 100px;
+/* color:#888; */
+}
+
+.book_name{
+  display: block;
+   margin-left: 10px;
+  /* font-weight: 800;  */
+  /* font-family: 'Gill Sans Extrabold'; */
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.book_author {
+  display: block;
+  margin-left: 10px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+.book_detail {
+  margin-left: 10px; 
+}
