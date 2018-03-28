@@ -6,6 +6,15 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    const userId = wx.getStorageSync('userId'),
+    token = wx.getStorageSync('token');
+
+    if(!userId || !token) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
+
     // 登录
     // wx.login({
     //   success: res => {

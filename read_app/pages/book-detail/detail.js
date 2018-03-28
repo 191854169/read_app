@@ -5,9 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-  flag: false,
+  flag: true,
+  isFold: true,
   bookDetail: {},
   token: wx.getStorageSync('token') || '',
+  userId: wx.getStorageSync('userId'),
+  from: '',
   },
 
   /**
@@ -15,39 +18,47 @@ Page({
    */
   onLoad: function (options) {
     //获取到图书的isbn
-  let isbn = options.isbn;
+  const isbn = options.isbn;
+  this.setData({
+    from: options.from
+  })
 
   console.log(`bookDetail: ${isbn}`);
+  wx.showLoading({
+    title: '加载中',
+    mask: true,
+  })
 
-  let _self = this;
-
-  function queryBookDetail() {
+  this.queryBookDetail(isbn).then((result) => {
+    this.setData({
+      bookDetail: result
+    })
+    wx.hideLoading();
+  })
+  },
+  /**
+   * 获取图书详情
+   */
+  queryBookDetail(isbn) {
     return new Promise((resolve, reject) => {
       wx.request({
-        // url: `https://library.jessechiu.com/api/v1/books/isbn/:${isbn}`,
-        url: 'https://library.jessechiu.com/api/v1/public/books/',
+        url: `https://library.jessechiu.com/api/v1/public/books/isbn/${isbn}`,
+        // url: 'https://library.jessechiu.com/api/v1/public/books/',
         header: {
-          'Authorization': `Bearer ${_self.data.token}`,
+          'Authorization': `Bearer ${this.data.token}`,
         },
-        data: {
-          title: isbn
-        },
+        // data: {
+        //   title: isbn
+        // },
         success: (res) => {
           console.log(res)
-          resolve(res.data.data.data)
+          resolve(res.data.data)
         },
         fail: (err) => {
           reject(err);
         }
       })
     })
-  }
-
-  queryBookDetail().then((result) => {
-    _self.setData({
-      bookDetail: result[0]
-    })
-  })
   },
 
   /**
@@ -97,5 +108,89 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  /**
+   * 用户借书
+   */
+  borrowBook: function() {
+    const _self = this;
+    new Promise(function(resolve, reject) {
+
+      wx.showModal({
+        title: '提示',
+        content: '请问您确定要将某书收入囊中么？',
+        success: (res) => {
+          console.log(res);
+          // console.log('success');
+          res.cancel === false ? resolve('success') : reject('fail')
+        },
+        fail: (err) => {
+          reject(err);
+        }
+      })
+    })
+    .then(item => {
+      console.log(item);
+      const currentTime = new Date();
+      wx.request({
+        url: `https://library.jessechiu.com/api/v1/borrowed/${this.data.userId}`,
+        method: 'PUT',
+        header: {
+          'Authorization': `Bearer ${this.data.token}`
+        },
+        data: {
+          borrowingTime: currentTime,
+          returnTime: new Date(1000*60*60*24*20 + currentTime.valueOf()),
+          isbn10: this.data.bookDetail.isbn10,
+          isbn13: this.data.bookDetail.isbn13
+          // isbn10: '7115275793',
+          // isbn13: '9787115275790',
+        },
+        success: result => {
+          console.log('what');
+          console.log(result);
+          return result
+        },
+        fail: err => {
+          console.log(err)
+          Promise.reject(err)
+        }
+      })
+      })
+      .then(item => {
+        wx.showToast({
+          title: '借阅成功',
+          icon: 'success',
+          duration: 2000,
+          mask: true,
+          success: function() {
+            setTimeout(function(){
+              if (_self.data.from === 'personal') {
+                wx.switchTab({
+                  url: '/pages/personal/personal',
+                })
+              } else if(_self.data.from === 'list') {
+                wx.switchTab({
+                  url: '/pages/book_list/list',
+                })
+              } else {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            },2000);
+          }
+        })
+      })
+    .catch(err => console.log(err))
+  },
+  /**
+   * 扩展开详情
+   */
+  expandSummary() {
+    this.setData({
+      isFold: false
+    })
   }
 })

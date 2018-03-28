@@ -65,9 +65,10 @@ Page({
   
   },
   formSubmit: function(e){
-    let userId = e.detail.value.username;
-    let password = e.detail.value.password;
-    let randomString = e.detail.value.randomString;
+    const userId = e.detail.value.username;
+    const password = e.detail.value.password;
+    const randomString = e.detail.value.randomString;
+    wx.setStorageSync('userId', userId)
     
    /**
     * 首次登陆
@@ -76,77 +77,47 @@ Page({
       3、在每次操作的时候进行sessionId验证。如果无则查找数据库，如果有则验证是否过期。
     */
 
-    // wx.login({
-    //   success: res => {
-        wx.request({
-          url: 'https://library.jessechiu.com/api/v1/public/login',
-          method: 'POST',
-          data: {
-            userId: userId,
-            password: password
-          },
-          success: (res) => {
-            const userInfo = res.data.data.userInfo;
-            const token = res.data.data.token;
-            const currTime = +new Date();
-            const expireTime = currTime + 60*60*24*7;
-            wx.setStorageSync('expireTime', expireTime);
-            wx.setStorageSync('token', token);
-            wx.switchTab({
-              url: '/pages/personal/personal',
-            })
-          },
-          fail: err => {
-            console.log(err);
-          }
-        })
-      // }
-    // })
+    this.login(userId, password).then(result => {
+      const currTime = +new Date();
+      const expireTime = currTime + 60 * 60 * 24 * 7;
+      wx.setStorageSync('expireTime', expireTime);
+      wx.setStorageSync('token', result);
+      wx.setStorageSync('loginFlag', true)
+      wx.switchTab({
+        url: '/pages/personal/personal',
+      })
+    })
+    .catch(err => {
+      console.log(err);
+    })
 
+  },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // wx.request({
-    //   url: 'http://10.10.30.77/LoginVerifyWebService/Login.asmx/Login?',
-    //   method:"POST",
-    //   data: {
-    //     username: username,
-    //     password: password,
-    //     randomString: randomString
-    //   },
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded'
-    //   },
-    //   success: (res) => {
-    //     console.log(res);
-    //     let xmlParser = new Parser.DOMParser();
-    //     let doc = xmlParser.parseFromString(res.data);
-    //     let successDescription = doc.getElementsByTagName("SucceedDescription")[0].firstChild.nodeValue;
-    //     let temp = successDescription.split('&');
-    //     let name = temp[0];
-    //     wx.setStorageSync('name', name);
-    //     console.log(wx.getStorageSync('name'));
-    //     wx.switchTab({
-    //       url: '/pages/personal/personal',
-    //     })
-    //   },
-    //   fail: (err) => {
-    //     console.log(err);
-    //   }
-    // })
+  /**
+   * 用户登录
+   */
+  login(userId, password){
+    return new Promise(function(resolve, reject) {
+      wx.request({
+        // url: 'https://library.jessechiu.com/api/v1/public/login',
+        url: 'https://library.jessechiu.com/api/v1/public/client/login',
+        method: 'POST',
+        data: {
+          userId: userId,
+          password: password
+        },
+        success: (res) => {
+          console.log(res)
+          const userInfo = res.data.data.userInfo;
+          const token = res.data.data.token;
+          resolve(token);
+        },
+        fail: err => {
+          console.log(err);
+          reject(err);
+        }
+      })
+    })
   },
 
   /**

@@ -7,16 +7,19 @@
     </view>
     <view class='book_detail'>
       <!-- <label class='book_id'>编号1</label> -->
-      <text class='book_author block'>作者:{{bookDetail.author[0]}}</text>
-      <text class='book_author block'>ISBN:{{bookDetail.isbn13}}</text>
-      <text class='book_author block'>编号:{{bookDetail.serialNumber}}</text>
-      <text class='book_author block'>种类:{{bookDetail.category}}</text>
-      <text class='line'>{{bookDetail.bookInfo.summary}}</text>
+      <view class='book_author' style='font-size:18px'>{{bookDetail.title}}</view>
+      <view class='book_author'>{{bookDetail.author[0]}}</view>
+      <!-- <view class='book_author'>{{bookDetail.serialNumber}}</view> -->
+      <view class='book_author'>{{bookDetail.category}}</view>
+      <view bindtap='expandSummary'>
+        <view class="{{isFold?'line textView':'line'}}" >{{bookDetail.bookInfo.summary}}</view>
+        <image></image>
+      </view>
     </view>
   </view>
   <view class='page-bottom'>
-    <view wx:if="{{flag}}" class='book_state'>
-      <text class='book_isThere'>在库</text>
+    <view wx:if="{{flag}}" class='book_state' bindtap='borrowBook'>
+      <text class='book_isThere'>借书</text>
     </view>
     <view wx:else class='book_state'>
       <text class='book_isThere'>{{bookDetail.borrow_name}}将会在{{bookDetail.borrow_time}}归还</text>

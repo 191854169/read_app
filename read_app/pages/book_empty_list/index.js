@@ -8,7 +8,8 @@ Page({
   styleHeight: 0,
   listData: [],
   timer: null,
-  token: wx.getStorageSync('token')
+  token: wx.getStorageSync('token'),
+  userId: wx.getStorageSync('userId'),
   },
 
   /**
@@ -37,7 +38,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    wx.request({
+      url: `https://library.jessechiu.com/api/v1/borrowed/${this.data.userId}`,
+      header: {
+        'Authorization': `Bearer ${this.data.token}`
+      },
+      success: (result) => {
+        console.log(result);
+      },
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
 
   /**

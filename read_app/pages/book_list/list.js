@@ -7,11 +7,13 @@ Page({
   data: {
     detail: '详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情详情',
     timer: null,
-    // listData: [],
+    listData: [],
     totalData: [],
     is_checked: false,
     styleHeight: 0,
-    token: wx.getStorageSync('token') || ''
+    start: 0,
+    token: wx.getStorageSync('token') || '',
+    userId: wx.getStorageSync('userId'),
   },
 
   /**
@@ -20,6 +22,7 @@ Page({
   onLoad: function (options) {
     wx.setStorageSync('listData', this.data.listData);
     const that = this;
+    //设置高度
     wx.getSystemInfo({
       success: function(res) {
         let temp = res.windowHeight + 'px';
@@ -28,20 +31,8 @@ Page({
         })
       },
     });
+    
 
-    // wx.request({
-    //   url: 'http://localhost:3000/a/about',
-    //   success: (res) => {
-    //     console.log(res);
-    //     let temp = res.data;
-    //     // temp.forEach((item) => {
-    //     //   item.src = '../../resource/image/' + item.ISBN + '.png';
-    //     // })
-    //     this.setData({
-    //       listData: temp
-    //     })
-    //   }
-    // })
   },
 
   /**
@@ -58,29 +49,17 @@ Page({
     // console.log(this.data.token)
     // let token = wx.getStorageSync('token');
     // console.log(token)
-    wx.request({
-      url: 'https://library.jessechiu.com/api/v1/public/books/',
-      header: {
-        'Authorization': `Bearer ${this.data.token}`
-      },
-      data: {
-        params: {
-          start: 0,
-          count: 20
-        }
-      },
-      success: (res) => {
-        console.log(res.data.data);
-        let binaryInfo = res.data.data;  //返回来的图书馆数据对象
-        let bookInfo = binaryInfo.data;  //所有的图书信息
-        // temp.forEach((item) => {
-        //   item.src = '../../resource/image/' + item.ISBN + '.png';
-        // })
+    const currentTime = wx.getStorageSync('currentTime') || 0;
+    if (this.data.listData.length === 0) {
+      this.requestBookData(this.data.start).then(result => {
         this.setData({
-          listData: bookInfo
+          listData: result
         })
-      }
-    })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
   },
 
   /**
@@ -108,7 +87,24 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('xxx');
+    const requestCount = this.data.start + 20;
+    const _self = this;
+    console.log('it is bottom!');
+    clearTimeout(this.data.timer);
+    let temp = setTimeout(function(){
+      _self.requestBookData(requestCount).then(result => {
+      let currentListData = [..._self.data.listData,...result];
+      _self.setData({
+        listData: currentListData
+      })
+    })
+    .catch(err => {
+      console.log(err)
+    })},2000)
+
+    this.setData({
+      timer: temp
+    })
   },
 
   /**
@@ -138,10 +134,11 @@ Page({
   },
 
   enterItem(e){
+    clearTimeout(this.data.timer)
     console.log(e);
     let isbn = e.currentTarget.dataset.isbn;
     wx.navigateTo({
-      url: '/pages/book-detail/detail?isbn='+ isbn,
+      url: `/pages/book-detail/detail?isbn=${isbn}&from=list`,
     })
   },
 
@@ -203,5 +200,31 @@ Page({
     wx.navigateTo({
       url: '/pages/book_empty_list/index',
     })
-  }
+  },
+   requestBookData(start,count = 20) {
+     const _self = this;
+     return new Promise(function(resolve, reject) {
+       wx.request({
+         url: `https://library.jessechiu.com/api/v1/public/books/?start=${start}&count=${count}`,
+         header: {
+           'Authorization': `Bearer ${_self.data.token}`
+         },
+        //  data: {
+        //    params: {
+        //      start: start,
+        //      count: count
+        //    }
+        //  },
+         success: (res) => {
+           console.log(res.data.data);
+           let binaryInfo = res.data.data;  //返回来的图书馆数据对象
+           let bookInfo = binaryInfo.data;  //所有的图书信息
+           resolve(bookInfo);
+         },
+         fail: err => {
+           reject(err);
+         }
+       })
+     })
+   }
 })

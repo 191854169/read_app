@@ -8,20 +8,24 @@
       <label>{{name}}</label>
   </view>
   <view class='page_body'>
-    <view class='add_book'>
+    <!-- <view class='add_book'>
       <text bindtap='addBook'>添加书籍</text>
       <image src='/resource/qrcode.png' bindtap='scanBook'></image>
-    </view>
-    <view bindtap='borrowNum' class='borrow-num' data-id='1'>
+    </view> -->
+    <!-- <view bindtap='borrowNum' class='borrow-num' data-id='1'>
       <text>可借书籍</text>
       <label>2</label>
-    </view>
+    </view> -->
     <view bindtap='borrowNum' class='is_borrow-num' data-id='1'>
       <text>已借书籍</text>
-      <label>1</label>
+      <label>{{bookNum}}</label>
     </view>
     <view class='scan' bindtap='borrowBook'>
       <text>扫码借书</text>      
+      <image src='/resource/qrcode.png'></image>
+    </view>
+    <view class='scan' bindtap='deleteBook'>
+      <text>扫码还书</text>      
       <image src='/resource/qrcode.png'></image>
     </view>
   </view>

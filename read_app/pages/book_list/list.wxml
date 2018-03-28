@@ -9,7 +9,9 @@
       <icon type='search' size='18' color="#666666"></icon>
     </view>
   </view>
-
+  <view>
+  <!-- 分类，暂无想法 -->
+  </view>
   <view class='page-body'>
     <view wx:if="{{listData.length <= 0}}"></view>
     <view wx:else>
@@ -19,7 +21,7 @@
           <image src='{{item.bookInfo.image}}' class='image'></image>
         </view>
 
-        <view class='book' data-isbn='{{item.bookInfo.title}}' bindtap='enterItem'>
+        <view class='book' data-isbn='{{item.bookInfo.isbn13}}' bindtap='enterItem'>
           <label class='book_name textView'>{{item.bookInfo.title}}</label>
           <label class='book_author'>{{item.author[0]}}</label>
           <!-- <input class='book_detail' value='{{item.id}}'></input> -->

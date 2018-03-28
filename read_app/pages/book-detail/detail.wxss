@@ -30,7 +30,8 @@
 
 .book_detail {
   font-size: 14px;
-  color: #888;
+  /* color: #888; */
+  color: black;
   text-align: center;
 }
 
@@ -49,16 +50,17 @@
 }  */
 
  .line{
-   margin-top: 15px;
+    margin-top: 15px;
   font-size: 14px;
   width: 80%;
-  margin-left: 10%;
-  word-break: break-all;
+  margin-left: 10%; 
+  text-align: justify;
+  /* word-break: break-all;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 
 .page-bottom{
@@ -77,4 +79,5 @@
 
 .book_isThere{
   color: white;
+  width: 50%;
 }
