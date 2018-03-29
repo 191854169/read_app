@@ -183,7 +183,14 @@ Page({
           }
         })
       })
-    .catch(err => console.log(err))
+    .catch(err => {
+      console.log(err);
+      wx.showToast({
+        title: err.errMsg,
+        duration: 2000,
+        mask: true
+      })
+      })
   },
   /**
    * 扩展开详情

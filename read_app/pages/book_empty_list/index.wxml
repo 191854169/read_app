@@ -2,7 +2,7 @@
 <view class='page' style='height:{{styleHeight}}'>
   <view class='page-head'>
     <view class='page-head-scanner'>
-      <image src='/resource/scanner.png' bindtap='scanner'></image> 
+      <!-- <image src='/resource/scanner.png' bindtap='scanner'></image>  -->
       <input class='search' placeholder="请输入书名/作者" bindinput='search' bindfocus='onFocus' auto-focus='true'></input>
       <icon type='search' size='18' color="#666666"></icon>
     </view>

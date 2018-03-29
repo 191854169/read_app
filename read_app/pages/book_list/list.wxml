@@ -2,11 +2,11 @@
 <view class='page' style='height:{{styleHeight}}'>
   <view class='page-head'>
     <view class='page-head-scanner' bindtouchend='onFocus'>
-      <image src='/resource/scanner.png'></image> 
+      <!-- <image src='/resource/scanner.png'></image>  -->
+      <icon type='search' size='18' color="#666666"></icon>
       <view class='search'>
         <label>请输入书名/作者</label>
       </view>
-      <icon type='search' size='18' color="#666666"></icon>
     </view>
   </view>
   <view>

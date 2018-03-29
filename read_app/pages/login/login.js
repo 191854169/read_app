@@ -84,7 +84,7 @@ Page({
       wx.setStorageSync('token', result);
       wx.setStorageSync('loginFlag', true)
       wx.switchTab({
-        url: '/pages/personal/personal',
+        url: '/pages/book_list/list',
       })
     })
     .catch(err => {
