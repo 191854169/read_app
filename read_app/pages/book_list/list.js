@@ -226,5 +226,8 @@ Page({
          }
        })
      })
+   },
+   onTabItemTap(item) {
+     console.log(item);
    }
 })

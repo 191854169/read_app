@@ -1,1 +1,3 @@
-{"navigationBarTitleText": "搜索"}
+{"navigationBarTitleText": "搜索",
+"onReachBottomDistance": "5px",
+"disableScroll": "true"}
